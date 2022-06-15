@@ -45,8 +45,37 @@ window.onscroll = function() {
 ///////////////////////////////
 // document.querySelectorAll('[data-name="value"]');
 
-const wage_arguments = [lmnts(`[data-wages]`)]
+const input_search = lmnt(`#input_search`),
+btn_search = lmnt(`#btn_search`),
+wage_arguments = lmnts(`[data-wages]`),
+all_arguments = lmnts(`.arguments`),
+subject_select = lmnt(`#subject_select`)
 
 
+// all_arguments.forEach(argument => {
+// 	subject_select.options[subject_select.options.length] = new Option(argument.value, argument.value)
+// })
+
+let results = ``,
+selected_option = subject_select.selectedOptions[0].value
+
+function search () {
+	selected_option = subject_select.selectedOptions[0].value
+	results = lmnts(`[data-${selected_option}]`)
+	console.log(results)
+
+	all_arguments.forEach(argument => {
+		argument.style.display = "block"
+		if (selected_option != 'all') {
+			if (argument.dataset[selected_option] == undefined){
+				argument.style.display = "none"
+			} else {
+				console.log(`else: ${argument.dataset[selected_option]}`)
+			}
+		}
+	})
+
+	let not_result = '';
+}
 
 

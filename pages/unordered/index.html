@@ -12,7 +12,7 @@
   <body>
 
 	<header id="header">
-		<h1>Unordered Arguments</h1>
+		<h1>Unordered arguments</h1>
 
 		<nav id="nav_bar">
 			<a href="../../index.html"><p>Home</p></a>
@@ -22,23 +22,43 @@
 
 
 	<main id="main">
-		<h2>Unordered Arguments</h2>
+		<h2>unordered arguments</h2>
 
-		<input type="text" value="wages">
-		<button>search by "subject"</button>
+		<p>
+			A lot of these arguments are just for testing the code
+		</p>
 
-		<section data-wages="pro">
+		<label for="subject">select subject: </label>
+		<select name="subject" id="subject_select">
+			<option value="wages">wages</option>
+			<option value="motive">motive</option>
+			<option value="all">all</option>
+		</select> <br>
+		<button id="btn_search" onclick="search()">search by subject</button>
+
+		<hr>
+
+		<section data-wages="pro" class="arguments">
 			If a business can't afford to pay its workers a living wage<br>
 			that business doesn't deserve to be in business
 		</section>
 
-		<section data-motive="public"> 
+		<section data-motive="public" class="arguments"> 
 			Private businesses seek to turn a profit for themselves,<br>
 			and hence only act in their own self interest.<br>
 			Whereas government businesses seek to meet government goals,<br>
 			which can be more in line with the general publics interests
 		</section>
 
+		<section data-motive="private" class="arguments"> 
+			People only really care about themselves<br>
+			hence the profit motive is the only true motive
+		</section>
+
+		<section class="arguments"> 
+			If you approach politics from any angle other than seeking the truth<br>
+			your "facts" will already be byist and incorrect! (coder note: this is just for testing)
+		</section>
 	</main>
 
   </body>
