@@ -45,56 +45,56 @@ window.onscroll = function() {
 ///////////////////////////////
 // document.querySelectorAll('[data-name="value"]');
 
-const input_search = lmnt(`#input_search`),
-btn_search = lmnt(`#btn_search`),
-wage_arguments = lmnts(`[data-wages]`),
-all_arguments = lmnts(`.arguments`),
-subject_select = lmnt(`#subject_select`)
+// const input_search = lmnt(`#input_search`),
+// btn_search = lmnt(`#btn_search`),
+// wage_arguments = lmnts(`[data-wages]`),
+// all_arguments = lmnts(`.arguments`),
+// subject_select = lmnt(`#subject_select`)
 
 
 // all_arguments.forEach(argument => {
 // 	subject_select.options[subject_select.options.length] = new Option(argument.value, argument.value)
 // })
 
-let results = ``,
-selected_option = subject_select.selectedOptions[0].value
+// let results = ``,
+// selected_option = subject_select.selectedOptions[0].value
 
-function search () {
-	selected_option = subject_select.selectedOptions[0].value
-	results = lmnts(`[data-${selected_option}]`)
-	console.log(results)
+// function search () {
+// 	selected_option = subject_select.selectedOptions[0].value
+// 	results = lmnts(`[data-${selected_option}]`)
+// 	console.log(results)
 
-	all_arguments.forEach(argument => {
-		argument.style.display = "block"
-		if (selected_option != 'all') {
-			if (argument.dataset[selected_option] == undefined){
-				argument.style.display = "none"
-			} else {
-				console.log(`else: ${argument.dataset[selected_option]}`)
-			}
-		}
-	})
+// 	all_arguments.forEach(argument => {
+// 		argument.style.display = "block"
+// 		if (selected_option != 'all') {
+// 			if (argument.dataset[selected_option] == undefined){
+// 				argument.style.display = "none"
+// 			} else {
+// 				console.log(`else: ${argument.dataset[selected_option]}`)
+// 			}
+// 		}
+// 	})
 
-	let not_result = '';
-}
+// 	let not_result = '';
+// }
 
-let datasets = {}, re_dataAttr
+// let datasets = {}, re_dataAttr
 
-function getDataAttributes(node) {
-	;[...node.attributes].forEach((value, index, attr) =>{
-		let attr_node_name = value.value.name
-		//console.log(`value: ${value}. index: ${JSON.toString(index)}. attr: ${JSON.toString(attr)}`)
-		// console.log(`value.name: ${value.name}. value.value: ${value.value}`)
-		let attr_node_value = value.value
-		if (value.name.includes("data")) {
-			//Object.assign(datasets, {[value.name]: attr_node_value})
-			if (!datasets[value.name]) datasets[value.name] = []
-			datasets[value.name].push(attr_node_value)
-		}
+// function getDataAttributes(node) {
+// 	;[...node.attributes].forEach((value, index, attr) =>{
+// 		let attr_node_name = value.value.name
+// 		//console.log(`value: ${value}. index: ${JSON.toString(index)}. attr: ${JSON.toString(attr)}`)
+// 		// console.log(`value.name: ${value.name}. value.value: ${value.value}`)
+// 		let attr_node_value = value.value
+// 		if (value.name.includes("data")) {
+// 			//Object.assign(datasets, {[value.name]: attr_node_value})
+// 			if (!datasets[value.name]) datasets[value.name] = []
+// 			datasets[value.name].push(attr_node_value)
+// 		}
 		
-	})
+// 	})
 
-	return datasets
+// 	return datasets
     // d = {}, 
     // re_dataAttr = /^data\-(.+)$/;
 
@@ -109,22 +109,22 @@ function getDataAttributes(node) {
     // })()
 
     // return d;
-}
+// }
 
-all_arguments.forEach(argument => getDataAttributes(argument))
+// all_arguments.forEach(argument => getDataAttributes(argument))
 
-let subjects = []
+// let subjects = []
 
-Object.entries(datasets).forEach((key, value) =>{
-	// console.log(`key: ${key}. value: ${value}`)
-	let attr = key[0]
-	// console.log(attr)
-	subjects.push(attr.replace(`data-`,''))
-})
+// Object.entries(datasets).forEach((key, value) =>{
+// 	// console.log(`key: ${key}. value: ${value}`)
+// 	let attr = key[0]
+// 	// console.log(attr)
+// 	subjects.push(attr.replace(`data-`,''))
+// })
 
-subjects.forEach(subject => {
-	subject_select.options[subject_select.options.length] = new Option(subject, subject)
-})
+// subjects.forEach(subject => {
+// 	subject_select.options[subject_select.options.length] = new Option(subject, subject)
+// })
 
 /*
 var a = [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });

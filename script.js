@@ -5,7 +5,8 @@ lmnts = (...selectors) => [...document.querySelectorAll(selectors)]
 
 const body = lmnt(`body`), 
 header = lmnt(`header`),
-main = lmnt(`main`)
+main = lmnt(`main`),
+main_sections = lmnts(`main section`)
 
 main.style.top = header.clientHeight+'px'
 
