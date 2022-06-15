@@ -118,6 +118,23 @@ main section {
 	color: rgb(219, 201, 212);
 }
 
+main :not(.mobile_resizer) {
+	padding: 1px 3ch;
+}
+
+/* mobile */
+@media (max-width: 991px){
+	main section{
+		padding: 1px;
+		margin: 5px auto;
+	}
+	main .mobile_resizer {
+		padding: 1px;
+	}
+}
+
+
+
 * { 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 

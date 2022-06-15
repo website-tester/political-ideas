@@ -10,7 +10,8 @@ nav_bar = lmnt(`#nav_bar`),
 main_sections = lmnts(`main section`)
 
 main.style.top = header.clientHeight+'px'
-main.style.padding = "0px 3ch"
+//main.style.padding = "0px 3ch"
+
 
 let set_width = (+document.body.clientWidth)+`px`
 
@@ -20,6 +21,9 @@ function set_max_widths () {
 	nav_bar.style.width = main.style.width = header.style.width =
 	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
 	main_sections.forEach(section => section.maxWidth = (+document.body.clientWidth-10)+`px`)
+
+	if (header.clientHeight <991) main.classList.add('mobile_resizer')
+	else main.classList.remove('mobile_resizer')
 }
 set_max_widths ()
 window.onresize = set_max_widths
