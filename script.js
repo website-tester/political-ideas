@@ -14,10 +14,17 @@ btn_nav = lmnt(`#btn_nav`)
 
 main.style.padding = "0px 3ch"
 
-const set_width = (+document.body.clientWidth)+`px`
+let set_width = (+document.body.clientWidth)+`px`
 
-nav_bar.style.width = main.style.width = header.style.width =
-nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
+function set_max_widths () {
+	set_width = (+document.body.clientWidth)+`px`
+
+	nav_bar.style.width = main.style.width = header.style.width =
+	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
+	main_sections.forEach(section => section.maxWidth = set_width)
+}
+set_max_widths ()
+window.onresize = set_max_widths
 
 // let nav_default = nav_bar.style.display || `block`
 // if (nav_default == ``) nav_default = `block`

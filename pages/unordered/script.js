@@ -6,16 +6,23 @@ lmnts = (...selectors) => [...document.querySelectorAll(selectors)]
 const body = lmnt(`body`), 
 header = lmnt(`header`),
 main = lmnt(`main`),
-nav_bar = lmnt(`#nav_bar`)
+nav_bar = lmnt(`#nav_bar`),
+main_sections = lmnts(`main section`)
 
 main.style.top = header.clientHeight+'px'
 main.style.padding = "0px 3ch"
 
-const set_width = (+document.body.clientWidth)+`px`
+let set_width = (+document.body.clientWidth)+`px`
 
-nav_bar.style.width = main.style.width = header.style.width =
-nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
+function set_max_widths () {
+	set_width = (+document.body.clientWidth)+`px`
 
+	nav_bar.style.width = main.style.width = header.style.width =
+	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
+	main_sections.forEach(section => section.maxWidth = set_width)
+}
+set_max_widths ()
+window.onresize = set_max_widths
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.pageYOffset;
@@ -32,3 +39,14 @@ window.onscroll = function() {
 	header.style.top = "0px";
   }
 }
+
+
+
+///////////////////////////////
+// document.querySelectorAll('[data-name="value"]');
+
+const wage_arguments = [lmnts(`[data-wages]`)]
+
+
+
+
