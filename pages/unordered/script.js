@@ -78,4 +78,54 @@ function search () {
 	let not_result = '';
 }
 
+let datasets = {}, re_dataAttr
 
+function getDataAttributes(node) {
+	;[...node.attributes].forEach((value, index, attr) =>{
+		let attr_node_name = value.value.name
+		//console.log(`value: ${value}. index: ${JSON.toString(index)}. attr: ${JSON.toString(attr)}`)
+		// console.log(`value.name: ${value.name}. value.value: ${value.value}`)
+		let attr_node_value = value.value
+		if (value.name.includes("data")) {
+			//Object.assign(datasets, {[value.name]: attr_node_value})
+			if (!datasets[value.name]) datasets[value.name] = []
+			datasets[value.name].push(attr_node_value)
+		}
+		
+	})
+
+	return datasets
+    // d = {}, 
+    // re_dataAttr = /^data\-(.+)$/;
+
+	// re_dataAttr = re_dataAttr.toString();
+
+    // [...node.attributes].forEach = (function (value, index, attr) {
+	// 	console.log(re_dataAttr)
+    //     if (re_dataAttr.test(attr.nodeName)) {
+    //         let key = attr.nodeName.match(re_dataAttr)[1]
+    //         d[key] = attr.nodeValue
+    //     }
+    // })()
+
+    // return d;
+}
+
+all_arguments.forEach(argument => getDataAttributes(argument))
+
+let subjects = []
+
+Object.entries(datasets).forEach((key, value) =>{
+	// console.log(`key: ${key}. value: ${value}`)
+	let attr = key[0]
+	// console.log(attr)
+	subjects.push(attr.replace(`data-`,''))
+})
+
+subjects.forEach(subject => {
+	subject_select.options[subject_select.options.length] = new Option(subject, subject)
+})
+
+/*
+var a = [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+*/
