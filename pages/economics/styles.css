@@ -36,29 +36,14 @@ header h1 {
 nav {
 	position: fixed;
 	top: 49px;
-	background-color: rgb(27, 209, 24);
+	background-color: white;
 	color: black;
 	width: 100vw;
-	padding: 5px 0px;
-}
-
-nav a {
-	text-decoration: none;
-	color: black;
-	text-transform: uppercase;
-	border-right: 1px solid black;
-}
-nav:last-child() {
-	border-right: none;
-}
-nav p {
-	display: inline-block;
-	padding: 3px;
 }
 
 main {
 	position: absolute;
-	top: 79px;
+	top: 49px;
 	width: 100vw;
 	padding: 1rem 0px;
 	margin: auto 0px;
