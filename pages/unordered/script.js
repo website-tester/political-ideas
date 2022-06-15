@@ -19,7 +19,7 @@ function set_max_widths () {
 
 	nav_bar.style.width = main.style.width = header.style.width =
 	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
-	main_sections.forEach(section => section.maxWidth = set_width)
+	main_sections.forEach(section => section.maxWidth = (+document.body.clientWidth-10)+`px`)
 }
 set_max_widths ()
 window.onresize = set_max_widths
