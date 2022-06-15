@@ -113,6 +113,7 @@ main section {
 	border-radius: 5px;
 	padding: 5px;
 	margin: 10px auto;
+	max-width: max-content;
 	display: inline-block;
 	background-color: #111;
 	color: rgb(219, 201, 212);

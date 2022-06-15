@@ -22,21 +22,23 @@
 
 
 	<main id="main">
-		<h2>unordered arguments</h2>
+		<article id="main_top">
+			<h2>unordered arguments</h2>
 
-		<p>
-			A lot of these arguments are just for testing the code
-		</p>
+			<p>
+				A lot of these arguments are just for testing the code
+			</p>
 
-		<label for="subject">select subject: </label>
-		<select name="subject" id="subject_select">
-			<!-- <option value="wages">wages</option>
-			<option value="motive">motive</option> -->
-			<option value="all">all</option>
-		</select> <br>
-		<button id="btn_search" onclick="search()">search by subject</button>
+			<label for="subject">select subject: </label>
+			<select name="subject" id="subject_select" onchange="search()">
+				<!-- <option value="wages">wages</option>
+				<option value="motive">motive</option> -->
+				<option value="all">all</option>
+			</select> <br>
+			<!-- <button id="btn_search" onclick="search()">search by subject</button> -->
 
-		<hr>
+			<hr>
+		</article>
 
 		<section data-wages="pro" class="arguments">
 			If a business can't afford to pay its workers a living wage<br>

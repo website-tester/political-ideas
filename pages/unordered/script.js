@@ -7,7 +7,8 @@ const body = lmnt(`body`),
 header = lmnt(`header`),
 main = lmnt(`main`),
 nav_bar = lmnt(`#nav_bar`),
-main_sections = lmnts(`main section`)
+main_sections = lmnts(`main section`),
+main_top = lmnt(`#main_top`)
 
 main.style.top = header.clientHeight+'px'
 //main.style.padding = "0px 3ch"
@@ -53,8 +54,13 @@ const input_search = lmnt(`#input_search`),
 btn_search = lmnt(`#btn_search`),
 wage_arguments = lmnts(`[data-wages]`),
 all_arguments = lmnts(`.arguments`),
-subject_select = lmnt(`#subject_select`)
+subject_select = lmnt(`#subject_select`),
+options_list = lmnts(`option`)
 
+options_list.forEach(x=>{
+	if(x.textContent.length>20)
+	x.textContent=x.textContent.substring(0,20)+'...';
+})
 
 // all_arguments.forEach(argument => {
 // 	subject_select.options[subject_select.options.length] = new Option(argument.value, argument.value)
@@ -66,18 +72,21 @@ selected_option = subject_select.selectedOptions[0].value
 function search () {
 	selected_option = subject_select.selectedOptions[0].value
 	results = lmnts(`[data-${selected_option}]`)
-	console.log(results)
+	//console.log(results)
 
 	all_arguments.forEach(argument => {
 		argument.style.display = "block"
 		if (selected_option != 'all') {
 			if (argument.dataset[selected_option] == undefined){
-				argument.style.display = "none"
+				//argument.style.display = "none"
 			} else {
-				console.log(`else: ${argument.dataset[selected_option]}`)
+				//console.log(`else: ${argument.dataset[selected_option]}`)
+				main.prepend(argument)
 			}
 		}
 	})
+
+	main.prepend(main_top)
 
 	let not_result = '';
 }
@@ -126,8 +135,60 @@ Object.entries(datasets).forEach((key, value) =>{
 	subjects.push(attr.replace(`data-`,''))
 })
 
+function create_Class(name,rules){
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    document.getElementsByTagName('head')[0].appendChild(style);
+    if(!(style.sheet||{}).insertRule) 
+        (style.styleSheet || style.sheet).addRule(name, rules);
+    else
+        style.sheet.insertRule(name+"{"+rules+"}",0);
+}
+// createClass('.whatever',"background-color: green;");
+
+// function get_random_color() {
+// 	var letters = '0123456789ABCDEF';
+// 	var color = '#';
+// 	for (var i = 0; i < 6; i++) {
+// 	  color += letters[Math.floor(Math.random() * 16)];
+// 	}
+// 	return color;
+// }
+
+// let color, letters
+// function AddDigitToColor(limit)
+// {
+//     color += letters[Math.round(Math.random() * limit )]
+// }
+// function GetRandomColor() {
+//     color = '#'
+//     AddDigitToColor(5)
+//     for (var i = 0; i < 5; i++) {
+//         AddDigitToColor(15)
+//     }
+//     return color
+// }
+
+function get_random_dark_color () {
+	let random_number_between = (min, max) => 
+		~~(Math.random() * (max - min + 1) + min)
+
+	let r = random_number_between(0,125),
+	g = random_number_between(0,125),
+	b = random_number_between(0,125)
+
+	return `rgb(${r},${g},${b})`
+}
+
 subjects.forEach(subject => {
 	subject_select.options[subject_select.options.length] = new Option(subject, subject)
+
+	// create_Class(`data-${subject}`, `background-color: ${get_random_color()};`)
+	// lmnt(`[data-${subject}]`).classList.add(`data-${subject}`)
+	let random_color = get_random_dark_color()
+	lmnts(`[data-${subject}]`).forEach(argument => {
+		argument.style.backgroundColor = random_color
+	})
 })
 
 /*
