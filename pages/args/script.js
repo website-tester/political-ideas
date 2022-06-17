@@ -203,7 +203,7 @@ function search () {
 	// main.prepend(main_top)
 }
 
-
+// Private businesses seek to turn a profit for themselves, and hence only
 
 let datasets = {} // , re_dataAttr // i think re_dataAttr is unused
 function getDataAttributes(node, my_datasets) {

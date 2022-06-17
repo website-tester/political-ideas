@@ -58,6 +58,7 @@ header h1 {
 	font-size: 28px;
 	margin: 0px;
 	padding: 10px 5px 10px 5px;
+	transition: 1s;
 }
 
 nav {
@@ -72,10 +73,12 @@ nav {
 	max-height: 69px;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	transition: 1s;
 }
 
 #btn_nav {
 	display: none;
+	transition: 1s;
 }
 
 nav a {
@@ -87,14 +90,17 @@ nav a {
 	display: inline-block;
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
+	transition: 1s;
 }
 nav p:hover {
 	background-color: black;
 	color: white;
+	transition: 1s;
 }
 nav p {
 	padding: 5px 5px 0px 5px;
 	margin: 0px;
+	transition: 1s;
 }
 
 main {
@@ -106,16 +112,19 @@ main {
 	left: 0px;
 	margin: 0px;
 	padding: 0px;
+	transition: 1s;
 }
 
 main section {
 	text-align: left;
+	transition: 1s;
 }
 
 main section p {
-	max-width: 90ch !important;
+	max-width: 70ch !important;
 	padding: 0px;
 	margin: 0px;
+	transition: 1s;
 }
 
 main section {
@@ -126,33 +135,40 @@ main section {
 	display: inline-block;
 	background-color: #111;
 	color: rgb(219, 201, 212);
+	transition: 1s;
 }
 
 main section.class-args_agree {
 	border-radius: 5px;
+	transition: 1s;
 }
 
 main:not(.mobile_resizer) {
 	padding: 1px 3ch;
+	transition: 1s;
 }
 
 main>div#all_args {
 	border-top: 1px solid white;
 	margin: 2ch auto;
 	padding: 0px;
+	transition: 1s;
 }
 main>div:not(#all_args) {
 	border-top: 1px solid grey;
 	margin: 2ch auto;
 	padding: 0px;
+	transition: 1s;
 }
 
 #main_title {
 	display: none;
+	transition: 1s;
 }
 
 #main_top {
 	padding: 0px;
+	transition: 1s;
 }
 
 
