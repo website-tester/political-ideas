@@ -16,6 +16,9 @@
 
 		<nav id="nav_bar">
 			<a href="../../index.html"><p>Home</p></a>
+
+			<a href="../info/index.html"><p>Info/Sources</p></a>
+			<a href="../test/index.html"><p>Testing page (for dev)</p></a>
 		</nav>
 	</header>
 
@@ -29,35 +32,72 @@
 				A lot of these arguments are just for testing the code
 			</p>
 
+			<label for="page">select "page": </label>
+			<select name="page" id="page_select" onchange="choose_page()">
+				<option value="My POV">My POV</option>
+			</select> 
+			<br>
+
 			<label for="subject">select subject: </label>
 			<select name="subject" id="subject_select" onchange="search()">
 				<option value="all">all</option>
 			</select> 
 			<br>
-			<hr>
+			<!-- <hr> -->
 		</article>
 
-		<section data-wages="pro" class="arguments">
-			If a business can't afford to pay its workers a living wage<br>
-			that business doesn't deserve to be in business
-		</section>
+<!-- 
+	select "page":
+		my pov (dont show any args)
+		all args (dont show my pov)
+		args i agree with (dont show my pov)
+		args i disagree with (dont show my pov)
+ -->
+<!-- 
+	div my pov
 
-		<section data-motive="public" class="arguments"> 
-			Private businesses seek to turn a profit for themselves,<br>
-			and hence only act in their own self interest.<br>
-			Whereas government businesses seek to meet government goals,<br>
-			which can be more in line with the general publics interests
-		</section>
+	div all args
 
-		<section data-motive="private" class="arguments"> 
-			People only really care about themselves<br>
-			hence the profit motive is the only true motive
-		</section>
+	div args i agree with
 
-		<section class="arguments"> 
-			If you approach politics from any angle other than seeking the truth<br>
-			your "facts" will already be biased and incorrect!
-		</section>
+	div args i disagree with
+ -->
+
+ 		<div id="my_pov" data-page="My POV">
+			<section>
+				The world changes based on material conditions
+			</section>
+		</div>
+
+		<div id="all_args" data-page="All Arguments">
+
+		</div>
+
+		<div id="args_agree" data-page="Arguments I agree with">
+			<section data-wages="pro" class="arguments">
+				If a business can't afford to pay its workers a living wage<br>
+				that business doesn't deserve to be in business
+			</section>
+
+			<section data-motive="public" class="arguments"> 
+				Private businesses seek to turn a profit for themselves,<br>
+				and hence only act in their own self interest.<br>
+				Whereas government businesses seek to meet government goals,<br>
+				which can be more in line with the general publics interests
+			</section>
+		</div>
+
+		<div id="args_disagree" data-page="Arguments i disagree with">
+			<section data-motive="private" class="arguments"> 
+				People only really care about themselves<br>
+				hence the profit motive is the only true motive
+			</section>		
+			
+			<section class="arguments"> 
+				If you approach politics from any angle other than seeking the truth<br>
+				your "facts" will already be biased and incorrect!
+			</section>
+		</div>
 	</main>
 
   </body>

@@ -47,6 +47,88 @@ window.onscroll = function() {
 
 
 
+
+
+/* page code start */
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, '\\$&');
+	let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		local_results = regex.exec(url);
+	if (!local_results) return null;
+	if (!local_results[2]) return '';
+	return decodeURIComponent(local_results[2].replace(/\+/g, ' '));
+}
+
+let href_page = getParameterByName('page'),
+page_select = lmnt(`#page_select`),
+page_options_list = lmnts(`#page_select option`),
+all_pages = lmnts(`main>div`)
+
+let selected_page = "My POV"
+
+function choose_page () {
+	selected_page = page_select.selectedOptions[0].value
+
+	if (selected_page == `My POV`) {
+		all_pages.forEach(page => {
+			if (page.dataset["page"] != selected_page){
+				page.style.display = "none"
+			} else {
+				page.style.display = "block"
+			} 
+		})
+	} else if (selected_page == `All Arguments`) {
+		all_pages.forEach(page => {
+			if (page.dataset["page"] != selected_page){
+				page.style.display = "none"
+			} else {
+				page.style.display = "block"
+				
+				all_arguments.forEach(argument => page.prepend(argument))
+			} 
+		})
+	} else {
+		all_pages.forEach(page => {
+			if (page.dataset["page"] == `My POV` || page.dataset["page"] == `All Arguments`){
+				page.style.display = "none"
+			} else {
+				page.style.display = "block"
+				if (page.dataset["page"] == selected_page) {
+					main.prepend(page)
+				}
+
+				all_arguments.forEach(argument => {
+					if (argument.classList.contains(`class-${page.id}`)) {
+						if (argument.parentElement.id != page.id) 
+							page.prepend(argument)
+					}
+				})
+			}
+		})
+	}
+
+	main.prepend(main_top)
+}
+
+let page_datasets = {};
+all_pages.forEach(page => getDataAttributes(page, page_datasets));
+page_datasets = {...page_datasets["data-page"]}
+;(function add_page_options () {
+	let pages = []
+	Object.entries(page_datasets).forEach((key, value) =>{
+		if (key[1] != "My POV") pages.push(key[1])
+	})
+	pages.forEach(page => {
+		page_select.options[page_select.options.length] = new Option(page, page)
+	})
+}) ()
+
+choose_page ()
+
+/* page code end */
+
+
 ///////////////////////////////
 // document.querySelectorAll('[data-name="value"]');
 
@@ -55,119 +137,75 @@ btn_search = lmnt(`#btn_search`),
 wage_arguments = lmnts(`[data-wages]`),
 all_arguments = lmnts(`.arguments`),
 subject_select = lmnt(`#subject_select`),
-options_list = lmnts(`option`)
+options_list = lmnts(`#subject_select option`)
 
 options_list.forEach(x=>{
 	if(x.textContent.length>20)
 	x.textContent=x.textContent.substring(0,20)+'...';
 })
 
-// all_arguments.forEach(argument => {
-// 	subject_select.options[subject_select.options.length] = new Option(argument.value, argument.value)
-// })
+all_arguments.forEach(argument => {
+	argument.classList.add(`class-${argument.parentElement.id}`)
+})
 
-let results = ``,
-selected_option = subject_select.selectedOptions[0].value
+let selected_option = subject_select.selectedOptions[0].value
 
+// show all sections on a given subject above the rest
 function search () {
 	selected_option = subject_select.selectedOptions[0].value
-	results = lmnts(`[data-${selected_option}]`)
-	//console.log(results)
 
 	all_arguments.forEach(argument => {
 		argument.style.display = "block"
 		if (selected_option != 'all') {
+
 			if (argument.dataset[selected_option] == undefined){
 				//argument.style.display = "none"
+
+				// what about if all args are selected in higher selecter
+				// if (selected_page != `All Arguments`) {
+				// 	all_pages.forEach(page => {
+				// 		if (argument.classList.contains(`class-${page.id}`)) {
+				// 			page.append(argument)
+				// 		}
+				// 	})
+				// }
 			} else {
-				//console.log(`else: ${argument.dataset[selected_option]}`)
-				main.prepend(argument)
+				//main.prepend(argument)
+
+				// what about if all args are selected in higher selecter
+				if (selected_page != `All Arguments`) {
+					all_pages.forEach(page => {
+						if (argument.classList.contains(`class-${page.id}`)) {
+							page.prepend(argument)
+						}
+					})
+				} else {
+					lmnt(`#all_args`).prepend(argument)
+				}
 			}
 		}
 	})
 
-	main.prepend(main_top)
-
-	let not_result = '';
+	// main.prepend(main_top)
 }
 
-let datasets = {}, re_dataAttr
 
-function getDataAttributes(node) {
+
+let datasets = {} // , re_dataAttr // i think re_dataAttr is unused
+function getDataAttributes(node, my_datasets) {
 	;[...node.attributes].forEach((value, index, attr) =>{
-		let attr_node_name = value.value.name
-		//console.log(`value: ${value}. index: ${JSON.toString(index)}. attr: ${JSON.toString(attr)}`)
-		// console.log(`value.name: ${value.name}. value.value: ${value.value}`)
+		// let attr_node_name = value.value.name // i think this is unused
 		let attr_node_value = value.value
 		if (value.name.includes("data")) {
-			//Object.assign(datasets, {[value.name]: attr_node_value})
-			if (!datasets[value.name]) datasets[value.name] = []
-			datasets[value.name].push(attr_node_value)
+			if (!my_datasets[value.name]) my_datasets[value.name] = []
+			my_datasets[value.name].push(attr_node_value)
 		}
 		
 	})
 
-	return datasets
-    // d = {}, 
-    // re_dataAttr = /^data\-(.+)$/;
-
-	// re_dataAttr = re_dataAttr.toString();
-
-    // [...node.attributes].forEach = (function (value, index, attr) {
-	// 	console.log(re_dataAttr)
-    //     if (re_dataAttr.test(attr.nodeName)) {
-    //         let key = attr.nodeName.match(re_dataAttr)[1]
-    //         d[key] = attr.nodeValue
-    //     }
-    // })()
-
-    // return d;
+	return my_datasets
 }
-
-all_arguments.forEach(argument => getDataAttributes(argument))
-
-let subjects = []
-
-Object.entries(datasets).forEach((key, value) =>{
-	// console.log(`key: ${key}. value: ${value}`)
-	let attr = key[0]
-	// console.log(attr)
-	subjects.push(attr.replace(`data-`,''))
-})
-
-function create_Class(name,rules){
-    var style = document.createElement('style');
-    style.type = 'text/css';
-    document.getElementsByTagName('head')[0].appendChild(style);
-    if(!(style.sheet||{}).insertRule) 
-        (style.styleSheet || style.sheet).addRule(name, rules);
-    else
-        style.sheet.insertRule(name+"{"+rules+"}",0);
-}
-// createClass('.whatever',"background-color: green;");
-
-// function get_random_color() {
-// 	var letters = '0123456789ABCDEF';
-// 	var color = '#';
-// 	for (var i = 0; i < 6; i++) {
-// 	  color += letters[Math.floor(Math.random() * 16)];
-// 	}
-// 	return color;
-// }
-
-// let color, letters
-// function AddDigitToColor(limit)
-// {
-//     color += letters[Math.round(Math.random() * limit )]
-// }
-// function GetRandomColor() {
-//     color = '#'
-//     AddDigitToColor(5)
-//     for (var i = 0; i < 5; i++) {
-//         AddDigitToColor(15)
-//     }
-//     return color
-// }
+all_arguments.forEach(argument => getDataAttributes(argument, datasets))
 
 function get_random_dark_color () {
 	let random_number_between = (min, max) => 
@@ -180,17 +218,23 @@ function get_random_dark_color () {
 	return `rgb(${r},${g},${b})`
 }
 
-subjects.forEach(subject => {
-	subject_select.options[subject_select.options.length] = new Option(subject, subject)
-
-	// create_Class(`data-${subject}`, `background-color: ${get_random_color()};`)
-	// lmnt(`[data-${subject}]`).classList.add(`data-${subject}`)
-	let random_color = get_random_dark_color()
-	lmnts(`[data-${subject}]`).forEach(argument => {
-		argument.style.backgroundColor = random_color
+(function add_subject_options_and_colors () {
+	let subjects = []
+	Object.entries(datasets).forEach((key, value) =>{
+		let attr = key[0]
+		subjects.push(attr.replace(`data-`,''))
 	})
-})
+	subjects.forEach(subject => {
+		subject_select.options[subject_select.options.length] = new Option(subject, subject)
 
-/*
-var a = [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
-*/
+		let random_color = get_random_dark_color()
+		lmnts(`[data-${subject}]`).forEach(argument => {
+			argument.style.backgroundColor = random_color
+		})
+	})
+}) ()
+
+
+
+
+

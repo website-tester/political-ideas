@@ -110,13 +110,16 @@ main {
 
 main section {
 	/* border: 1px solid white; */
-	border-radius: 5px;
 	padding: 5px;
 	margin: 10px auto;
 	max-width: max-content;
 	display: inline-block;
 	background-color: #111;
 	color: rgb(219, 201, 212);
+}
+
+main section.class-args_agree {
+	border-radius: 5px;
 }
 
 main :not(.mobile_resizer) {
@@ -144,4 +147,13 @@ main :not(.mobile_resizer) {
 
 select {
 	margin-bottom: 1ch;
+}
+
+main>div#all_args {
+	border-top: 1px solid white;
+	margin: 2ch 0px;
+}
+main>div:not(#all_args) {
+	border-top: 1px solid grey;
+	margin: 2ch 0px;
 }

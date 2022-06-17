@@ -1,7 +1,7 @@
 home.html: home (about) ->
 	info.html: info (sources)
-	test.html: test (help me test coding shit)
+	test.html: test (help me test coding stuff)
 	args.html:
 		all arguments,
-		my pov,
 		my povs arguments
+	pov.html: my pov

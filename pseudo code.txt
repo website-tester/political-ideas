@@ -1,0 +1,16 @@
+pages:
+	all args
+	args agree
+	arge disagree
+
+args:
+	all
+	subject 1
+	subject 2
+
+
+args doesnt change what pages display
+pages doesnt change what order args display in within a page. but does move them
+
+
+my pov isnt really that relevant to issue
