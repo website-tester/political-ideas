@@ -109,6 +109,16 @@ main {
 }
 
 main section {
+	text-align: left;
+}
+
+main section p {
+	max-width: 90ch !important;
+	padding: 0px;
+	margin: 0px;
+}
+
+main section {
 	/* border: 1px solid white; */
 	padding: 5px;
 	margin: 10px auto;
@@ -122,18 +132,59 @@ main section.class-args_agree {
 	border-radius: 5px;
 }
 
-main :not(.mobile_resizer) {
+main:not(.mobile_resizer) {
 	padding: 1px 3ch;
 }
+
+main>div#all_args {
+	border-top: 1px solid white;
+	margin: 2ch auto;
+	padding: 0px;
+}
+main>div:not(#all_args) {
+	border-top: 1px solid grey;
+	margin: 2ch auto;
+	padding: 0px;
+}
+
+#main_title {
+	display: none;
+}
+
+#main_top {
+	padding: 0px;
+}
+
 
 /* mobile */
 @media (max-width: 991px){
 	main section{
 		padding: 1px;
-		margin: 5px auto;
+		margin: 1px auto;
 	}
-	main .mobile_resizer {
+	main.mobile_resizer {
 		padding: 1px;
+	}
+
+	main>div#all_args {
+		padding: 0px;
+		margin: 1px auto;
+	}
+	main>div:not(#all_args) {
+		padding: 0px;
+		margin: 1px auto;
+	}
+
+	#header_title {
+		font-size: 1.5rem;
+	}
+
+	nav p {
+		padding: 1px 1px 0px 1px;
+	}
+
+	header h1 {
+		padding: 2px 1px 2px 1px;
 	}
 }
 
@@ -145,15 +196,9 @@ main :not(.mobile_resizer) {
      box-sizing: border-box; 
 }
 
-select {
+select, option {
 	margin-bottom: 1ch;
+	background-color: white !important;
+	color: black !important;
 }
 
-main>div#all_args {
-	border-top: 1px solid white;
-	margin: 2ch 0px;
-}
-main>div:not(#all_args) {
-	border-top: 1px solid grey;
-	margin: 2ch 0px;
-}

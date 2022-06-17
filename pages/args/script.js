@@ -8,7 +8,9 @@ header = lmnt(`header`),
 main = lmnt(`main`),
 nav_bar = lmnt(`#nav_bar`),
 main_sections = lmnts(`main section`),
-main_top = lmnt(`#main_top`)
+main_top = lmnt(`#main_top`),
+header_title = lmnt(`#header_title`),
+main_title = lmnt(`#main_title`)
 
 main.style.top = header.clientHeight+'px'
 //main.style.padding = "0px 3ch"
@@ -21,7 +23,7 @@ function set_max_widths () {
 
 	nav_bar.style.width = main.style.width = header.style.width =
 	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
-	main_sections.forEach(section => section.maxWidth = (+document.body.clientWidth-10)+`px`)
+	main_sections.forEach(section => section.maxWidth = (+document.body.clientWidth-1)+`px`)
 
 	if (header.clientHeight <991) main.classList.add('mobile_resizer')
 	else main.classList.remove('mobile_resizer')
@@ -31,21 +33,27 @@ window.onresize = set_max_widths
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  const header_minus_nav_height = header.clientHeight - nav_bar.clientHeight
-  if (prevScrollpos > currentScrollPos) {
-    header.style.top = -header_minus_nav_height+"px"// "-52px";
-  } else {
-    header.style.top = -header.clientHeight+"px" //"-123px";
-  }
-  prevScrollpos = currentScrollPos;
-  if (window.scrollY==0) {
-	header.style.top = "0px";
-  }
+window.onscroll = reset_heights
+
+function reset_heights () {
+	let currentScrollPos = window.pageYOffset;
+	let local_header = lmnt(`header`),
+	local_nav_bar = lmnt(`nav`)
+	let header_minus_nav_height = local_header.clientHeight - local_nav_bar.clientHeight
+	
+	if (prevScrollpos > currentScrollPos) {
+		local_header.style.top = -header_minus_nav_height+"px"// "-52px";
+	} else {
+		local_header.style.top = -local_header.clientHeight+"px" //"-123px";
+	}
+	prevScrollpos = currentScrollPos;
+	if (window.scrollY==0) {
+		local_header.style.top = "0px";
+	}
+	let temp_main_top = +local_header.clientHeight
+	if (temp_main_top < 0) temp_main_top = 0
+	main.style.top = temp_main_top+`px`
 }
-
-
 
 
 
@@ -71,6 +79,10 @@ let selected_page = "My POV"
 
 function choose_page () {
 	selected_page = page_select.selectedOptions[0].value
+
+	header_title.innerHTML = main_title.innerHTML = selected_page
+	set_max_widths ()
+	reset_heights ()
 
 	if (selected_page == `My POV`) {
 		all_pages.forEach(page => {
@@ -252,3 +264,5 @@ function selectItemByValue(elmnt, value){
 	choose_page ()
 }
 selectItemByValue(page_select, href_page)
+
+

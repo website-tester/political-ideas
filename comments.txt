@@ -1,3 +1,5 @@
 technically it does currently work (afaik)
 however the code needs more comments
 otherwise I'll forget what it does
+
+(hopefully i don't forget what afaik means)

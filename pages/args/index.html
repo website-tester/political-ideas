@@ -26,10 +26,11 @@
 
 	<main id="main">
 		<article id="main_top">
-			<h2>All Arguments</h2>
+			<h2 id="main_title">All Arguments</h2>
 
 			<p>
-				A lot of these arguments are just for testing the code
+				Selecting a page only shows whats for that page<br>
+				Select a subject shows arguments on that subject first
 			</p>
 
 			<label for="page">select "page": </label>
@@ -42,7 +43,7 @@
 			<select name="subject" id="subject_select" onchange="search()">
 				<option value="all">all</option>
 			</select> 
-			<br>
+			<!-- <br> -->
 			<!-- <hr> -->
 		</article>
 
@@ -75,30 +76,42 @@
 
 		<div id="args_agree" data-page="Arguments I agree with">
 			<section data-wages="pro" class="arguments">
-				If a business can't afford to pay its workers a living wage<br>
-				that business doesn't deserve to be in business
+				<p>
+					If a business can't afford to pay its workers a living wage, 
+					that business doesn't deserve to be in business
+				</p>
 			</section>
 
 			<section data-motive="public" class="arguments"> 
-				Private businesses seek to turn a profit for themselves,<br>
-				and hence only act in their own self interest.<br>
-				Whereas government businesses seek to meet government goals,<br>
-				which can be more in line with the general publics interests
+				<p>
+					Private businesses seek to turn a profit for themselves, 
+					and hence only act in their own self interest. 
+					Whereas government businesses seek to meet government goals, 
+					which can be more in line with the general publics interests
+				</p>
 			</section>
 		</div>
 
 		<div id="args_disagree" data-page="Arguments i disagree with">
 			<section data-motive="private" class="arguments"> 
-				People only really care about themselves<br>
-				hence the profit motive is the only true motive
+				<p>
+					People only really care about themselves, 
+					hence the profit motive is the only true motive
+				</p>
 			</section>		
 			
-			<section class="arguments"> 
-				If you approach politics from any angle other than seeking the truth<br>
-				your "facts" will already be biased and incorrect!
+			<section data-motive="private" class="arguments">
+				<p>
+					The free market and competition leads to innovation and efficiency
+				</p>
 			</section>
 		</div>
 	</main>
 
   </body>
 </html>
+
+			<!-- <section class="arguments"> 
+				If you approach politics from any angle other than seeking the truth<br>
+				your "facts" will already be biased and incorrect!
+			</section> -->
