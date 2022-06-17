@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+header, header h1, 
+nav, nav a, nav p, nav p:hover, 
+main {
+	transition: 1s;
+}

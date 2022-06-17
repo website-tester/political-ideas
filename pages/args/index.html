@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>On Politics</title>
-    <link href="styles.css" rel="stylesheet" />
-	<link href="../../styles.css" rel="stylesheet" />
-    <script defer type="text/javascript" src="script.js"></script>
-  </head>
-  <body>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>On Politics</title>
+	<link href="../../global.css" rel="stylesheet" />
+	<link href="styles.css" rel="stylesheet" />
+	<script defer type="text/javascript" src="../../global.js"></script>
+	<script defer type="text/javascript" src="script.js"></script>
+
+	<link rel="preload" href="transition_times.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="transition_times.css"></noscript>
+</head>
+<body>
 
 	<header id="header">
 		<h1 id="header_title">All Arguments</h1>
@@ -47,24 +51,24 @@
 			<!-- <hr> -->
 		</article>
 
-<!-- 
-	select "page":
-		my pov (dont show any args)
-		all args (dont show my pov)
-		args i agree with (dont show my pov)
-		args i disagree with (dont show my pov)
- -->
-<!-- 
-	div my pov
+		<!-- 
+		select "page":
+			my pov (dont show any args)
+			all args (dont show my pov)
+			args i agree with (dont show my pov)
+			args i disagree with (dont show my pov)
+		-->
+		<!-- 
+		div my pov
 
-	div all args
+		div all args
 
-	div args i agree with
+		div args i agree with
 
-	div args i disagree with
- -->
+		div args i disagree with
+		-->
 
- 		<div id="my_pov" data-page="My POV">
+		<div id="my_pov" data-page="My POV">
 			<section>
 				The world changes based on material conditions
 			</section>
@@ -108,10 +112,18 @@
 		</div>
 	</main>
 
-  </body>
+	<footer>
+		<script> </script>
+	</footer>
+
+</body>
 </html>
 
-			<!-- <section class="arguments"> 
-				If you approach politics from any angle other than seeking the truth<br>
-				your "facts" will already be biased and incorrect!
-			</section> -->
+			<!-- 
+			<section class="arguments"> 
+				<p>
+					If you approach politics from any angle other than seeking the truth<br>
+					your "facts" will already be biased and incorrect!
+				</p>
+			</section> 
+			-->

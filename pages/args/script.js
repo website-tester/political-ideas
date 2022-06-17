@@ -1,39 +1,19 @@
 "use strict";
 
-const lmnt = selector => document.querySelector(selector),
-lmnts = (...selectors) => [...document.querySelectorAll(selectors)]
-
-const body = lmnt(`body`), 
-header = lmnt(`header`),
-main = lmnt(`main`),
-nav_bar = lmnt(`#nav_bar`),
-main_sections = lmnts(`main section`),
-main_top = lmnt(`#main_top`),
+const main_top = lmnt(`#main_top`),
 header_title = lmnt(`#header_title`),
 main_title = lmnt(`#main_title`)
 
 main.style.top = header.clientHeight+'px'
 //main.style.padding = "0px 3ch"
 
-
-let set_width = (+document.body.clientWidth)+`px`
-
-function set_max_widths () {
-	set_width = (+document.body.clientWidth)+`px`
-
-	nav_bar.style.width = main.style.width = header.style.width =
-	nav_bar.style.maxWidth = main.style.maxWidth = header.style.maxWidth = set_width
-	main_sections.forEach(section => section.maxWidth = (+document.body.clientWidth-1)+`px`)
-
-	if (header.clientHeight <991) main.classList.add('mobile_resizer')
-	else main.classList.remove('mobile_resizer')
-}
 set_max_widths ()
-window.onresize = set_max_widths
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.pageYOffset;
 window.onscroll = reset_heights
+window.onresize = () => {reset_heights(), set_max_widths ()}
+
 
 function reset_heights () {
 	let currentScrollPos = window.pageYOffset;
@@ -264,5 +244,3 @@ function selectItemByValue(elmnt, value){
 	choose_page ()
 }
 selectItemByValue(page_select, href_page)
-
-
