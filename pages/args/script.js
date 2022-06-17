@@ -67,6 +67,8 @@ all_pages = lmnts(`main>div`)
 
 let selected_page = "My POV"
 
+
+
 function choose_page () {
 	selected_page = page_select.selectedOptions[0].value
 
@@ -236,5 +238,17 @@ function get_random_dark_color () {
 
 
 
+function selectItemByValue(elmnt, value){
+	let element_with_id = lmnt(`#${value}`) || lmnt(`#my_pov`)
+	let external_name = element_with_id.dataset[`page`]
 
-
+	for (let i=0; i < elmnt.options.length; i++) {
+		
+		if (elmnt.options[i].value == external_name) {
+			elmnt.selectedIndex = i;
+			break;
+		}
+	}
+	choose_page ()
+}
+selectItemByValue(page_select, href_page)
